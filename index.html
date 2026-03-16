@@ -1,332 +1,157 @@
 <!DOCTYPE html>
-
-<html lang="en">
-
+<html lang="en" data-bs-theme="dark">
 <head>
-
     <meta charset="UTF-8">
-
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <meta name="keywords" content="Wikum Weerasekara, wikum, weerasekara, wikwizard, Wikwizard, WikWidard">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIKWIZARD | DIGITAL CREATIVE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root { --accent: #ffc107; --glass: rgba(255, 255, 255, 0.05); }
+        [data-bs-theme="light"] { --glass: rgba(0, 0, 0, 0.05); }
 
-    <title>WIKWIZARD | OFFICIAL</title>
+        body { transition: background 0.3s ease, color 0.3s ease; font-family: 'Inter', sans-serif; }
+        
+        /* Glassmorphism Cards */
+        .custom-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+        .custom-card:hover { transform: translateY(-10px); }
 
-    <link rel="stylesheet" href="style.css">
+        /* Video Background Hero */
+        .hero-video-container {
+            position: relative;
+            height: 80vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #bg-video {
+            position: absolute;
+            top: 50%; left: 50%;
+            min-width: 100%; min-height: 100%;
+            width: auto; height: auto;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            filter: brightness(0.5);
+        }
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <link rel="icon" type="image/x-icon" href="images/fvico.ico">
-
-  </head>
-
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
 <body>
 
+<button class="btn btn-warning theme-toggle shadow" onclick="toggleTheme()" id="themeBtn">
+    <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+</button>
 
-
-<!--Start of Navigational bar ------------------------------------------------------------------------------------------------------------------------>
-
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark ">
-
-    <div class="container-fluid">
-
-      
-
-      <div class="logo">
-
-        <a href="#"><em>Wik</em> Wizard</a>
-
-      </div>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-
-        <span class="navbar-toggler-icon"></span>
-
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-
-        <ul class="navbar-nav ms-auto mb-2 mb-md-0">
-
-          <li class="nav-item">
-
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-
-          </li>
-
-          <li class="nav-item">
-
-            <a class="nav-link" href="recentworks.html">Recent Works</a>
-
-          </li>
-
-          <li class="nav-item">
-
-            <a class="nav-link" href="aboutus.html">About Us</a>
-
-          </li>
-
-          <li class="nav-item">
-
-            <a class="nav-link" href="feedback.html">Feedback</a>
-        </ul>        
-
-      </div>
-
-    </div>
-
-  </nav>
-
-<!--End of Navigational bar ------------------------------------------------------------------------------------------------------------------------>
-
-
-
-<div class="adj"></div>
-
-<video autoplay muted loop  width="100%" height="100%">
-
-  <source src="new.mp4" type="video/mp4" />
-
-</video>
-
-  <div class="col-12">
-
-   
-
+<nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary border-bottom">
   <div class="container">
+    <a class="navbar-brand fw-bold fs-3" href="#">WIK<span class="text-warning">WIZARD</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto text-uppercase fw-semibold">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Works</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+        <li class="nav-item"><a class="nav-link btn btn-warning text-dark ms-lg-3 px-4" href="#">Feedback</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-      <div class="none20"></div>
-
-      <div class="col-12">
-
-          <p class="display-1 text-white text-center fw-bold cursor-arrow">Who Am <span class="display-1  text-yel fw-bold cursor-arrow">I</span>...</p>
-
-          <p class="text-white px-5 py-2 text-center cursor-arrow">I am Wikum Weerasekara, a skilled freelancer from Sri Lanka. I design roll-up banners, cover pages, letterheads, business cards, and other stationaries for you. If you want to make a creative and professional-looking website, I can design them for you. I give my utmost best to deliver unique and highest quality work and support for my customers. My goal is to help you achieve your business dream. Let's get started and work to make your dream come true.So why are you being late just click...</p>
-
-      </div>
-
-      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-
-          <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3" onclick="window.location.href = 'https://www.shutterstock.com/g/Wikwizard?rid=313135306&utm_medium=email&utm_source=ctrbreferral-link';">Shutterstock Portfolio</button>
-
-          <button type="button" class="btn btn-outline-secondary btn-lg px-4" onclick="window.location.href = 'https://www.fiverr.com/wikwizard';">Fiver Account Homepage</button>
-
+<div class="hero-video-container">
+    <video autoplay muted loop id="bg-video">
+        <source src="new.mp4" type="video/mp4">
+    </video>
+    <div class="container text-center text-white">
+        <h1 class="display-1 fw-black">Who Am <span class="text-warning">I</span>...</h1>
+        <p class="lead opacity-75 max-width-600 mx-auto">
+            I am Wikum Weerasekara, a skilled freelancer from Sri Lanka delivering 
+            premium designs that turn business dreams into reality.
+        </p>
+        <div class="mt-4">
+            <a href="#" class="btn btn-warning btn-lg px-5 me-2 rounded-pill">View Portfolio</a>
+            <a href="#" class="btn btn-outline-light btn-lg px-5 rounded-pill">Hire Me</a>
         </div>
-
-   </div>
-
-   <h1 class="display-4 text-white text-center fw-bold cursor-arrow">What are the things <span class="display-4  text-yel fw-bold cursor-arrow">I can do</span>...</h1>
-
-    <div class="none50"></div>
-
-
-
-
-
-  <div class="container">
-
-<div class="row">
-
-  <div class="col-12 col-md-4 col-lg-4 col-xl-4 pb-5 ">
-
-    <div class="container px-0 py-0 pt-0 rounded-2   " id="card">
-
-   <img src="images/grd.png" class="col-12 col-md-12 col-lg-12 col-xl-12 " id="img_c">
-
-         <h6 class="display-6 text-center pt-2  text-white  fw-bold cursor-arrow" "><span class="text-yel">GRAPHIC</span><br>DESIGNING</h6>
-
-     <p class="text-white  pt-1 pb-2 px-4 py-3" >We can create elegant designs according to your requirements.... </p>
-
     </div>
+</div>
 
-  </div>
-
-  <div class="col-12 col-md-4 col-lg-4 col-xl-4 pb-5 ">
-
-    <div class="container  px-0 py-0 pt-0 rounded-2 "  id="card">
-
-      <img src="images/WED.png" class="col-12 col-md-12 col-lg-12 col-xl-12 " id="img_c">
-
-      <h6 class="display-6 text-center pt-2  text-white  fw-bold cursor-arrow" ><span class="text-yel">WEB</span><BR>DESIGNING</h6>
-
-     <p class="text-white  pt-1  pb-2 px-4 py-3 border-1 ">If you want eye catching web designs for your buisness contact us and we will suprise you.. </p>
-
-     </div>
-
-  </div>
-
-  <div class="col-12 col-md-4 col-lg-4 col-xl-4 pb-5 ">
-
-    <div class="container px-0 py-0 pt-0 shadow rounded-2"  id="card">
-
-      <img src="images/LOD.png" class="col-12 col-md-12 col-lg-12 col-xl-12  " id="img_c">
-
-      <h6 class="display-6 text-center pt-2  text-white  fw-bold cursor-arrow" ><span class="text-yel">LOGO</span><BR>DESIGNING</h6>
-
-     <p class="text-white  pt-1 pb-2 px-4  py-3 shadow ">You need a logo for your buisness.Contact us so don't be late </p>
-
+<section class="container py-5 my-5">
+    <h2 class="text-center display-4 fw-bold mb-5">What <span class="text-warning">I can do</span>...</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="p-4 custom-card h-100 text-center">
+                <div class="display-4 text-warning mb-3"><i class="bi bi-brush"></i></div>
+                <h3 class="h4">Graphic Design</h3>
+                <p class="opacity-75">Elegant designs crafted specifically for your brand identity and stationaries.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 custom-card h-100 text-center border-warning">
+                <div class="display-4 text-warning mb-3"><i class="bi bi-code-slash"></i></div>
+                <h3 class="h4">Web Design</h3>
+                <p class="opacity-75">Eye-catching, responsive websites that surprise your customers and boost sales.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 custom-card h-100 text-center">
+                <div class="display-4 text-warning mb-3"><i class="bi bi-vector-pen"></i></div>
+                <h3 class="h4">Logo Design</h3>
+                <p class="opacity-75">Don't be late to get a unique logo that represents your business essence perfectly.</p>
+            </div>
+        </div>
     </div>
-
-  </div>
-
-</div>
-
-
-
-</div>
-
-
-
-
-
- 
-
-
-
-<img src="images/cover.svg" alt="" >  
-
-
-
-
-
-<!-- Start of footer section ----------------------------------------------------------------------------------------------------------------------------->
-
-<footer class="bg-dark text-white ">
-
-  <div class="none50"></div>
-
-  <div class="container">
-
-<div class="row">
-
-  <div class="col-12 col-sm-3 text-center mt-3 surf">
-
-    <h4 class="yellow1 cursor-arrow">Just Surf ...</h4>
-
-    <ul class="nav flex-column text-justify flinks">
-
-      <li class="nav-item mb-2"><a href="#" class="link">Home</a></li>
-
-      <li class="nav-item mb-2"><a href="recentworks.html" class="link">Recent Works</a></li>
-
-      <li class="nav-item mb-2"><a href="aboutus.html" class="link">About US</a></li>
-
-      <li class="nav-item mb-2"><a href="feedback.html" class="link">Feedback</a></li>
-
- 
-
-    </ul>
-
-  </div>
-
-
-
- 
-
-  <div class="col-12 col-sm-4 text-center">
-
-    <h4 class="yellow1 mt-3 cursor-arrow">Recent Posts</h4>
-
-    <ul class="nav flex-column bullet text-justify">      
-
-      <li class="nav-item mb-2"><a href="https://www.fiverr.com/share/yVm4A6" class="link">I will be your annual report, cover page or brochure designer.(Fiverr gig)</a></li>
-
-      <li class="nav-item mb-2"><a href="https://www.shutterstock.com/image-vector/book-cover-page-design-template-a4-2173118525" class="link">Blue and Gray colour simple cover page design.</a></li>
-
-      <li class="nav-item mb-2"><a href="https://www.shutterstock.com/image-vector/magazine-cover-design-annual-report-black-2160799433" class="link">Golden luxury cover page design.</a></li>
-
-      <li class="nav-item mb-2"><a href="https://www.shutterstock.com/image-vector/roll-banner-business-design-on-background-2132242441" class="link">Roll up banner design for your restorent.</a></li>
-
-      <li class="nav-item mb-2"><a href="https://www.shutterstock.com/image-vector/roll-banner-design-business-concept-graphic-2131430727" class="link">A standing banner design for your business conference. </a></li>
-
-      <li class="nav-item mb-2"><a href="https://www.shutterstock.com/image-vector/modern-business-card-template-design-abstract-2159608135" class="link">Modern business card design for you.</a></li>
-
-      <li class="nav-item mb-2"><a href="https://www.shutterstock.com/image-vector/book-cover-page-design-template-a4-2166237463" class="link">This is for your annual project or assignment. </a></li>
-
-    </ul>
-
-  </div>
-
-
-
-  <div class="col-12 col-sm-4 text-justify footerp">
-
-    <h4 class="yellow1 text-center mt-3 cursor-arrow">About us</h4>
-
-    <p class="cursor-arrow">People are able to see a design and decide how they feel about it in just about 50 milliseconds. That means you have less than a second to impress, attract and convert your audience. If you have an attractive eye-catching design you can get the viewer's attention quickly. So I'm here to create a creative and attractive design for you. I believe it will be a catalyst for your success. Let's get started,<br>
-
-       
-
-       </p>
-
-</div>
-
-
-
-<div class="d-flex justify-content-between py-4 my-4 border-top ">
-
-  <p class="text-center"><script>document.write(new Date().getFullYear());</script> WikWizard Inc.&copy;<br> All rights reserved .</p>
-
-  <ul class="list-unstyled d-flex">
-
-    <li class="ms-3"><a target="_blank" href="https://dribbble.com/WikWizard"><svg class="some" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-dribbble" viewBox="0 0 16 16">
-
-      <path fill-rule="evenodd" d="M8 0C3.584 0 0 3.584 0 8s3.584 8 8 8c4.408 0 8-3.584 8-8s-3.592-8-8-8zm5.284 3.688a6.802 6.802 0 0 1 1.545 4.251c-.226-.043-2.482-.503-4.755-.217-.052-.112-.096-.234-.148-.355-.139-.33-.295-.668-.451-.99 2.516-1.023 3.662-2.498 3.81-2.69zM8 1.18c1.735 0 3.323.65 4.53 1.718-.122.174-1.155 1.553-3.584 2.464-1.12-2.056-2.36-3.74-2.551-4A6.95 6.95 0 0 1 8 1.18zm-2.907.642A43.123 43.123 0 0 1 7.627 5.77c-3.193.85-6.013.833-6.317.833a6.865 6.865 0 0 1 3.783-4.78zM1.163 8.01V7.8c.295.01 3.61.053 7.02-.971.199.381.381.772.555 1.162l-.27.078c-3.522 1.137-5.396 4.243-5.553 4.504a6.817 6.817 0 0 1-1.752-4.564zM8 14.837a6.785 6.785 0 0 1-4.19-1.44c.12-.252 1.509-2.924 5.361-4.269.018-.009.026-.009.044-.017a28.246 28.246 0 0 1 1.457 5.18A6.722 6.722 0 0 1 8 14.837zm3.81-1.171c-.07-.417-.435-2.412-1.328-4.868 2.143-.338 4.017.217 4.251.295a6.774 6.774 0 0 1-2.924 4.573z"/>
-
-    </svg></a></li>
-
-    <li class="ms-3"><a target="_blank" href="https://twitter.com/WikWizard_"><svg class="some" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
-
-      <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
-
-    </svg></a></li>
-
-    <li class="ms-3"><a target="_blank" href="https://t.me/WikWizard_Ofiicial_bot"><svg class="some"xmlns="http://www.w3.org/2000/svg" idth="25" height="25" fill="currentColor" class="bi bi-robot" viewBox="0 0 16 16">
-
-      <path d="M6 12.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5ZM3 8.062C3 6.76 4.235 5.765 5.53 5.886a26.58 26.58 0 0 0 4.94 0C11.765 5.765 13 6.76 13 8.062v1.157a.933.933 0 0 1-.765.935c-.845.147-2.34.346-4.235.346-1.895 0-3.39-.2-4.235-.346A.933.933 0 0 1 3 9.219V8.062Zm4.542-.827a.25.25 0 0 0-.217.068l-.92.9a24.767 24.767 0 0 1-1.871-.183.25.25 0 0 0-.068.495c.55.076 1.232.149 2.02.193a.25.25 0 0 0 .189-.071l.754-.736.847 1.71a.25.25 0 0 0 .404.062l.932-.97a25.286 25.286 0 0 0 1.922-.188.25.25 0 0 0-.068-.495c-.538.074-1.207.145-1.98.189a.25.25 0 0 0-.166.076l-.754.785-.842-1.7a.25.25 0 0 0-.182-.135Z"/>
-
-      <path d="M8.5 1.866a1 1 0 1 0-1 0V3h-2A4.5 4.5 0 0 0 1 7.5V8a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1v-.5A4.5 4.5 0 0 0 10.5 3h-2V1.866ZM14 7.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.5A3.5 3.5 0 0 1 5.5 4h5A3.5 3.5 0 0 1 14 7.5Z"/>
-
-    </svg></a></li>
-
-    <li class="ms-3"><a target="_blank" href="https://www.linkedin.com/in/wikum-weerasekara-668250164/"><svg class="some" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
-
-      <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-
-    </svg></a></li>
-
-    <li class="ms-3"><a target="_blank" href="https://t.me/WikWizard"><svg class="some" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
-
-      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"/>
-
-    </svg></a></li>
-
-  </ul>
-
-</div>
-
-</div>
-
-</footer>  
-
-<!-- End of footer section ----------------------------------------------------------------------------------------------------------------------------->
-
-
-
-
-
-  
-
-</div>
-
-<script src="https://apps.elfsight.com/p/platform.js" defer></script>
-
-      
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> 
-
- </body>
-
-</html>
+</section>
+
+<footer class="bg-body-tertiary py-5 border-top">
+    <div class="container text-center">
+        <p class="mb-0">© <span id="year"></span> WikWizard Inc. All rights reserved.</p>
+        <div class="mt-3">
+            <a href="#" class="text-body mx-2 fs-4"><i class="bi bi-linkedin"></i></a>
+            <a href="#" class="text-body mx-2 fs-4"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="text-body mx-2 fs-4"><i class="bi bi-telegram"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Theme Toggle Logic
+    function toggleTheme() {
+        const html = document.documentElement;
+        const icon = document.getElementById('themeIcon');
+        
+        if (html.getAttribute('data-bs-theme') === 'dark') {
+            html.setAttribute('data-bs-theme', 'light');
+            icon.classList.replace('bi-moon-stars-fill', 'bi-sun-fill');
+        } else {
+            html.setAttribute('data-bs-theme', 'dark');
+            icon.classList.replace('bi-sun-fill', 'bi-moon-stars-fill');
+        }
+    }
+
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+                </html>
